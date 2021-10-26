@@ -1,16 +1,15 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+app = FastAPI()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+@app.get('/', response_class=HTMLResponse)
+def hello_world():
+    return '<h1>Hello World</h1>'
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+@app.get('/about/{username}', response_class=HTMLResponse)
+def about_page(username):
+    return f'<h1>This is the about page of {username}</h1>'
